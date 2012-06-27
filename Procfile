@@ -1,1 +1,1 @@
-web: bundle exec thin start -p $UNITY_PORT -e $UNITY_ENV
+web: bundle exec thin start -p $PORT
