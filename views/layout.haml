@@ -1,0 +1,20 @@
+!!! 5
+%html
+  %head
+    - title = "Project Unity"
+    %title= title
+    
+    - desc = "Love & Tolerance. We've all come to understand how those values can empower us and make our and other people's lives better. Under the banner of a show that promoted those values, and united a community around it, musicians gathered, inspired to create something they could share with others and appreciate together. The purpose of Project Unity is to further prove that through healthy relationships based on friendship, respect and understanding, artists can come together and create to the best of their abilities. Engraving the magic of Friendship in waveforms, such is the goal of the love-born Project Unity."
+    %meta{ name: 'description', content: desc }
+    
+    %meta{ name: 'og:title', content: title }
+    %meta{ name: 'og:description', content: desc }
+    %meta{ name: 'og:site_name', content: title }
+    
+    %script{ type: "text/javascript", src: 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js' }
+    %script{ type: "text/javascript", src: '/js/root.js' }
+    
+    %link{ rel: 'stylesheet', type: "text/css", href: '/css/root.css' }
+
+  %body
+    = yield
