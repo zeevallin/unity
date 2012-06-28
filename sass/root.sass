@@ -13,12 +13,19 @@ body
   margin: 0
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
   background-color: #fefefe
-  background-image: url("/cross.png")
+  background-image: url("/pixels.png")
 .container
   position: relative
   height: 100%
 
 .splash-container
+
+.splash-wrapper, .project-content
+
+  background: rgba(255,255,255,.25)
+  +box-shadow(1px,1px,6px,rgba(0,0,0,.2))
+  border: 1px solid rgba(0,0,0,.3)
+  background-image: url("/cross.png")
 
 .splash-wrapper
   position: absolute
@@ -31,13 +38,8 @@ body
   line-height: 1.5em
   text-align: center
   font-weight: bold
-  color: rgba(0,0,0,.4)
-
-  background: rgba(255,255,255,.3)
-  
-  +box-shadow(1px,1px,6px,rgba(0,0,0,.2))
-  
-  border: 1px solid rgba(0,0,0,.1)
+  color: #666
+  text-shadow: 1px 1px 0 #fff
 
 .splash-content
   position: absolute
@@ -51,7 +53,7 @@ body
   background: #fff
   +box-shadow(1px,1px,3px,rgba(0,0,0,.1))
   
-  border: 1px solid rgba(0,0,0,.2)
+  border: 1px solid rgba(0,0,0,.3)
   +border-radius(2px)
 
 .project-container > .project-content
@@ -69,7 +71,11 @@ body
   
 
 .project-header
-  border-bottom: 1px dashed rgba(0,0,0,.4)
+  height: 99px
+  background: rgba(0,0,0,.08)
+  border-bottom: 1px solid rgba(0,0,0,.3)
+  text-shadow: 1px 1px 0 rgba(255,255,255,.3)
+  position: relative
   &:after
     content: "."
     display: block
@@ -79,18 +85,27 @@ body
     height: 0
   span.project-header-number
     width: 200px
-    font-size: 80px
+    font-size: 85px
     float: left
-    margin-right: 15px
     font-weight: bold
-    text-align: right
+    text-align: center
+    vertical-align: top
     line-height: 99px
+    color: #fff
+    text-shadow: 2px 2px 3px rgba(0,0,0,.3)
   
   h1, h2
     margin: 0
+    a
+      color: #666
+      text-decoration: none
+      &:hover
+        text-decoration: none
     
   h1.project-header-title
-    padding-top: 16px
+    padding-top: 14px
+    margin-bottom: 4px
+    color: rgba(0,0,0,.7)
     
   h2.project-header-artists
     font-weight: normal
@@ -102,19 +117,39 @@ body
   
   float: left
   
-  width: 199px
+  width: 200px
   
   height: 280px
   margin: 10px 0
   
   overflow: hidden
   
-  border-right: 1px solid rgba(0,0,0,.2)
-
 .project-details
   margin-left: 200px
+  margin-right: -10px
+  margin-top: 20px
   padding: 1em
+  background: #fff
+  +box-shadow(1px,1px,3px,rgba(0,0,0,.1))
+  
+  border: 1px solid rgba(0,0,0,.3)
+  +border-radius(3px)
+  
+  &:before, &:after
+    content: ""
+    display: block
+    position: relative
+    height: 10px
+
+  &:before
+    margin: -10px -10px 0 -10px
+    border-bottom: 1px dashed rgba(20,0,0,.1)
+  &:after
+    margin: 0 -10px -10px -10px
+    border-top: 1px dashed rgba(20,0,0,.1)
+  
   p
+    color: #666
     font-family: monospace !important
 
 @-webkit-keyframes fadeTriggerBar
