@@ -4,30 +4,47 @@ body
   padding: 0
   margin: 0
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
-  background: #fefefe
+  background-color: #fefefe
+  background-image: url("/pixels.png")
 .container
   position: relative
   height: 100%
 
 .splash-container
-  &:before
-    content: "PLACEHOLDER"
-    position: absolute
-    top: 50%
-    left: 50%
 
-    height: 400px
-    width: 700px
-    margin: -200px 0 0 -350px
-  
-    line-height: 400px
-    text-align: center
-    font-weight: bold
-    color: rgba(0,0,0,.4)
+.splash-wrapper
+  position: absolute
+  top: 50%
+  left: 50%
 
-    background: #E6E6E6
+  height: 400px
+  width: 700px
+  margin: -202px 0 0 -352px
+
+  line-height: 400px
+  text-align: center
+  font-weight: bold
+  color: rgba(0,0,0,.4)
+
+  background: rgba(255,255,255,.3)
   
-    +border-radius(10px)
+  +box-shadow(1px,1px,6px,rgba(0,0,0,.2))
+  
+  border: 1px solid rgba(0,0,0,.1)
+
+.splash-content
+  position: absolute
+  top: 0
+  bottom: 0
+  right: 0
+  left: 0
+  margin: 15px
+  
+  background: #fff
+  +box-shadow(1px,1px,3px,rgba(0,0,0,.1))
+  
+  border: 1px solid rgba(0,0,0,.2)
+  +border-radius(2px)
 
 .project-container > .project-content
   position: absolute
@@ -126,12 +143,24 @@ a.trigger
     #{$vendor}animation-duration: .5s
     #{$vendor}animation-delay: 0
   
-  &:before
+  &:before, &:after
     content: ""
     position: absolute
     left: 50%
     top: 50%
-    margin: -10px 0 0 -10px
+  
+  &:before
+    z-index: 20
+  
+  &:after
+    z-index: 15
+    width: 60px
+    height: 60px
+    +border-radius(30px)
+    +box-shadow-inset(0,0,1px,#000)
+    // border: 1px solid rgba(0,0,0,.3)
+    background: #666
+    margin: -30px 0 0 -30px
   
   &:hover
     +opacity(.9)
@@ -152,9 +181,10 @@ a.trigger
     &:before
       width: 0
       height: 0
-      border-left: 20px solid transparent
-      border-right: 20px solid transparent
-      border-bottom: 20px solid #666666
+      border-left: 15px solid transparent
+      border-right: 15px solid transparent
+      border-bottom: 15px solid #B3B3B3
+      margin: -10px 0 0 -15px
     
   &.trigger-down
     bottom: 0
@@ -170,6 +200,7 @@ a.trigger
     &:before
       width: 0
       height: 0
-      border-left: 20px solid transparent
-      border-right: 20px solid transparent
-      border-top: 20px solid #666666
+      border-left: 15px solid transparent
+      border-right: 15px solid transparent
+      border-top: 15px solid #B3B3B3
+      margin: -5px 0 0 -15px

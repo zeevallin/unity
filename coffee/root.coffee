@@ -24,7 +24,7 @@ $ ->
         jQuery(this).unbind "scroll", jQuery(this).data(uid1)
 
     special.scrollstop =
-      latency: 50
+      latency: 100
       setup: ->
         timer = undefined
         handler = (evt) ->
@@ -69,6 +69,27 @@ $ ->
     # 
     # console.log ((scrollTop + (windowHeight/2)) % windowHeight)
     # console.log "You are #{} from container no. #{containerNo}"
+  
+  changeBackgroundColor = ->
+    
+    windowHeight = $(window).height()
+    scrollTop = $(document).scrollTop()
+    
+    # Divergence
+    divergence = ((scrollTop % windowHeight) / windowHeight)
+    
+    # Upper Div
+    upperDivPos = Math.floor(scrollTop / windowHeight)
+    upperDivPos = if upperDivPos <= 0 then 0 else upperDivPos
+    
+    # Lower Div
+    lowerDivPos = Math.floor((scrollTop + windowHeight) / windowHeight)
+    lowerDivPos = if lowerDivPos >= $('.container').length then $('.container').length - 1 else lowerDivPos
+        
+    fromColor = $(".container:nth-child(#{upperDivPos + 1})").data('color')
+    toColor = $(".container:nth-child(#{lowerDivPos + 1})").data('color')
+    
+    $("body").css('background-color',blend(fromColor,toColor,divergence))
       
   correctScroll = ->
     
@@ -85,7 +106,24 @@ $ ->
         scrollTop: scrollAmmount
       , 300
       return true
+  
+  blend = (start,end,divergence) ->
     
+    start = hex2rgb(start)
+    end   = hex2rgb(end)
+    
+    getDifference = (int1,int2,divergence) ->
+      diff = int1 - int2
+      val = int1 - (diff * divergence)
+      return val
+    
+    color =
+      r: getDifference(start.r, end.r, divergence)
+      g: getDifference(start.g, end.g, divergence)
+      b: getDifference(start.b, end.b, divergence)
+        
+    hex = rgb2hex(color)
+        
   $(window).bind 'resize', (e) =>
     resizeContainerBlocks()
     hideTriggers()
@@ -93,6 +131,8 @@ $ ->
   $(document).bind 'scroll', (e) ->
     hideTriggers()
     changeContainerOpacity()
+    changeBackgroundColor()
+    
   .bind 'scrollstop', () ->
     correctScroll()
     
@@ -116,6 +156,6 @@ $ ->
     
     $("html, body").animate
       scrollTop: scrollAmmount
-    , 300
+    , 700
     
     false
